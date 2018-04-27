@@ -9,4 +9,4 @@
 
 ### hint
 1. you should commit your code continuously
-2. we love cretive guys
+2. we love creative guys
