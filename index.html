@@ -10,15 +10,6 @@
         crossorigin="anonymous">
 </head>
 
-<!-- <body ng-init="
-    friends=[
-    {'name': 'Music', 'age' : '25' ,'sex' : 'male'},
-    {'name': 'Tent', 'age' : '26'  ,'sex' : 'male'},
-    {'name': 'Golf', 'age' : '27'  ,'sex' : 'male'},
-    {'name': 'Poppy', 'age' : '28' ,'sex' : 'female'}
-    ];
-    "> -->
-
 <body>
     <div class="container">
         <a href="/">Home</a> |
@@ -32,9 +23,7 @@
             <input type="text" class="form-control" ng-model="searchBox.apartmentName " placeholder="Search Name">
             <p class="container">Seacr for : {{text}}</p>
     </div>
-    <div class="container" ng-controller="MainCtrl">
-        <!-- {{dataset}} -->
-        <!-- <div ng-view style="background-color:#ffe4c4;"></div> -->
+    <div class="container" ng-controller="MainCtrl"
         <table class="table" >
             <tr ng-repeat="A in dataset | filter:searchBox">
                 <td>{{A.apartmentId}}</td>
@@ -43,16 +32,8 @@
                 <td>{{A.apartmentPhoneNo}}</td>
             </tr>
         </table>
-        <!-- 
-            <ul class="list-group" ng-repeat="f in dataset">
-                <li class="list-group-item">{{f}} </li>
-            </ul -->
+        
     </div>
-
-    <!--  
-    <ul class="list-group" ng-repeat="n in apartments"></ul>
-    <li class "list-group-item"> {{n}}</li>
- -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
     <script src="js/app.js"></script>
