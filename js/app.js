@@ -8,6 +8,7 @@ angular.module('hgnApp', ['ngRoute', 'ngStorage'])
                 $scope.dataset = res.data
             }, function (error) {
             });
+        
         $scope.addapartment = function ($localStorage) {
             $scope.Apartments.push({
                 apartmentId: $scope.newApt.apartmentId,
@@ -15,7 +16,8 @@ angular.module('hgnApp', ['ngRoute', 'ngStorage'])
                 apartmentAddress: $scope.newApt.apartmentAddress,
                 apartmentPhoneNo: $scope.newApt.apartmentPhoneNo
             });
-            localStorage.setItem("Apartments", JSON.stringify($scope.Apartments));
+            localStorage.setItem("Apt", JSON.stringify($scope.Apartments));
+            //$scope.wocal = JSON.parse(localStorage.getItem("Apt") || '[]');
             console.log('Add to localstr');
         };
         $scope.controllerName = 'This is Home page';
