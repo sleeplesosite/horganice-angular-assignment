@@ -11,14 +11,14 @@
     <!-- {{dataset}} -->
     <!-- <div ng-view style="background-color:#ffe4c4;"></div> -->
     <table class="table">
-        <tr ng-repeat="A in Apartments | filter:searchBox">
+        <tr ng-repeat="A in apartments | filter:searchBox track by $index">
             <td>{{A.apartmentId}}</td>
             <td>{{A.apartmentName}}</td>
             <td>{{A.apartmentAddress}}</td>
             <td>{{A.apartmentPhoneNo}}</td>
         </tr>
     </table>
-   <!--  {{NEW}} naja -->
+     {{NEW}} naja {{test}}
     
     <!-- 
             <ul class="list-group" ng-repeat="f in dataset">

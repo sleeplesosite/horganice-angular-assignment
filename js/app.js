@@ -1,4 +1,4 @@
-angular.module('hgnApp', ['ngRoute', 'ngStorage'])
+angular.module('hgnApp', ['ngRoute'])
     .controller('MainCtrl', function ($scope, $http) {
         $http({
             method: 'GET',
@@ -8,6 +8,19 @@ angular.module('hgnApp', ['ngRoute', 'ngStorage'])
                 $scope.dataset = res.data
             }, function (error) {
             });
+        var STORAGE_KEY = "apartmentList"
+        var newEntries = {
+            apartments: [],
+            _getFromLocalStorage: function () {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            },
+
+            _saveToLocalStorage: function (apartments) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(apartments));
+            },
+        }
+        newEntries.apartments = newEntries._getFromLocalStorage();
+        var apartments = $scope.apartments = newEntries.apartments;
         $scope.addapartment = function ($localStorage) {
             var newEntry = {
                 apartmentId: $scope.newApt.apartmentId,
@@ -15,37 +28,33 @@ angular.module('hgnApp', ['ngRoute', 'ngStorage'])
                 apartmentAddress: $scope.newApt.apartmentAddress,
                 apartmentPhoneNo: $scope.newApt.apartmentPhoneNo
             }
-            $scope.Apartments.push({
-                apartmentId: $scope.newApt.apartmentId,
-                apartmentName: $scope.newApt.apartmentName,
-                apartmentAddress: $scope.newApt.apartmentAddress,
-                apartmentPhoneNo: $scope.newApt.apartmentPhoneNo
-            });
+            /*  $scope.Apartments.push({
+                  apartmentId: $scope.newApt.apartmentId,
+                  apartmentName: $scope.newApt.apartmentName,
+                  apartmentAddress: $scope.newApt.apartmentAddress,
+                  apartmentPhoneNo: $scope.newApt.apartmentPhoneNo
+              });*/
             if (!newEntry.apartmentId) {
                 return;
             }
 
             $scope.saving = true;
-            var STORAGE_KEY = "apartmentList"
-            var newEntries = {
-                apartments: [],
-                _getFromLocalStorage: function () {
-                    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-                },
 
-                _saveToLocalStorage: function (Entry) {
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(Entry));
-                },
-            }
             newEntries.apartments.push(newEntry);
             newEntries.apartments[newEntries.apartments.indexOf(newEntries.apartments)] = newEntry;
             newEntries._saveToLocalStorage(newEntries.apartments)
             $scope.newEntry = '';
             $scope.saving = false;
-               
 
             $scope.NEW = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            //$scope.test = newEntries.apartments.indexOf(newEntries.apartments);
             console.log('Add to localstr');
+            function appendToStorage(name, data) {
+                var old = localStorage.getItem(name);
+                if (old === null) old = "";
+                localStorage.setItem(name, old + data);
+            }
+
         };
         $scope.controllerName = 'This is Home page';
         console.log('This is a log from  Maincontroller');
@@ -81,6 +90,8 @@ angular.module('hgnApp', ['ngRoute', 'ngStorage'])
                 apartmentPhoneNo: "086-282-2859"
             }
         ]
+       // localStorage.setItem("Apartments", JSON.stringify($scope.Apartments)); 
+        localStorage.setItem(STORAGE_KEY, JSON.stringify($scope.Apartments));
         /*         $scope.search = function (item) {
                     if ($scope.searchBox == undefined) {
                         return true;
