@@ -8,7 +8,6 @@ angular.module('hgnApp', ['ngRoute', 'ngStorage'])
                 $scope.dataset = res.data
             }, function (error) {
             });
-
         $scope.addapartment = function ($localStorage) {
             var newEntry = {
                 apartmentId: $scope.newApt.apartmentId,
