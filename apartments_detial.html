@@ -3,7 +3,7 @@
     <!-- {{dataset}} -->
     <!-- <div ng-view style="background-color:#ffe4c4;"></div> -->
     <!-- {{controllerName}} -->
-     Deatail of ID : {{apartmentId}} {{allapartmentdetial}}
+     Deatail of ID : {{apartmentId}}
         <table class="table">
       <!--   <tr ng-repeat="A in apartments | filter:searchBox track by $index"> -->
           <tr>
@@ -13,7 +13,7 @@
             <td>{{apartmentdetial.apartmentPhoneNo}}</td>
         </tr>
     </table>
-    <a class="btn btn-primary" href="#!/"ng-click="editapartment()" > Edit</a>
+    <a class="btn btn-primary" href="#!/apartment_edit/{{apartmentdetial.apartmentId}}"> Edit</a>
     <a class="btn btn-danger" href="#!/" ng-click="removeapartment()" > Delete</a>
 
 </div>

@@ -122,6 +122,10 @@ angular.module('hgnApp', ['ngRoute'])
     }
         $scope.editapartment = function ($localStorage, $scope) {
             console.log('This is edit func');
+            var isConfirm = confirm('Are you sure you want to save?');
+            if(isConfirm){
+
+            }
         }
     }
     )
