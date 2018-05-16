@@ -11,20 +11,24 @@
     <!-- {{dataset}} -->
     <!-- <div ng-view style="background-color:#ffe4c4;"></div> -->
     <table class="table">
+
         <tr ng-repeat="A in apartments | filter:searchBox track by $index">
             <td>{{A.apartmentId}}</td>
-            <td>{{A.apartmentName}}</td>
+            <td>
+                <a href="#!/apartments/{{A.apartmentId}}">{{A.apartmentName}}</a>
+            </td>
             <td>{{A.apartmentAddress}}</td>
             <td>{{A.apartmentPhoneNo}}</td>
         </tr>
+
     </table>
-     {{NEW}} naja {{test}}
-    
+    <!--  {{NEW}} naja {{test}} -->
+
     <!-- 
             <ul class="list-group" ng-repeat="f in dataset">
                 <li class="list-group-item">{{f}} </li>
             </ul -->
-</div>
+<!-- </div>
 <div class="container">
     <h3>Add Apartment page</h3>
     <form ng-submit="addapartment()">
@@ -35,5 +39,5 @@
         <input type="submit" class="btn btn-primary"></input>
     </form>
 </div>
-
+ -->
 </html>

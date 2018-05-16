@@ -1,64 +1,21 @@
 angular.module('hgnApp')
-    .factory('hgnStorage', function ($http, $injector) {
-        return $injector.get('localStorage');
-    })
-    .factory('localStorage',function(){
-
-        var ID = 'Apartment';
-
-        var store = {
+	.factory('hgnStorage', function ($http, $injector) {
+		return $injector.get('ApartmentStorage');
+	})
+	.factory('ApartmentStorage', function () {
+		var STORAGE_KEY = "apartmentList"
+		var newEntries = {
 			apartments: [],
-
+			
 			_getFromLocalStorage: function () {
-				return JSON.parse(localStorage.getItem(ID) || '[]');
+				return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+				console.log('get to localstr lawoy');
 			},
 
-			_saveToLocalStorage: function (todos) {
-				localStorage.setItem(ID, JSON.stringify(apartments));
-			},
-
-			delete: function (todo) {
-				var deferred = $q.defer();
-
-				store.todos.splice(store.todos.indexOf(todo), 1);
-
-				store._saveToLocalStorage(store.todos);
-				deferred.resolve(store.todos);
-
-				return deferred.promise;
-			},
-
-			get: function () {
-				var deferred = $q.defer();
-
-				angular.copy(store._getFromLocalStorage(), store.todos);
-				deferred.resolve(store.todos);
-
-				return deferred.promise;
-			},
-
-			insert: function (todo) {
-				var deferred = $q.defer();
-
-				store.todos.push(todo);
-
-				store._saveToLocalStorage(store.todos);
-				deferred.resolve(store.todos);
-
-				return deferred.promise;
-			},
-
-			put: function (todo, index) {
-				var deferred = $q.defer();
-
-				store.todos[index] = todo;
-
-				store._saveToLocalStorage(store.todos);
-				deferred.resolve(store.todos);
-
-				return deferred.promise;
+			_saveToLocalStorage: function (apartments) {
+				localStorage.setItem(STORAGE_KEY, JSON.stringify(apartments));
 			}
-		};
-
-		return store;
+		}
+		//console.log('Add to localstr lawoy');
+		return newEntries;
 	});
