@@ -3,17 +3,18 @@
     <!-- {{dataset}} -->
     <!-- <div ng-view style="background-color:#ffe4c4;"></div> -->
     <!-- {{controllerName}} -->
-     Deatail of ID : {{apartmentId}}
-        <table class="table">
-      <!--   <tr ng-repeat="A in apartments | filter:searchBox track by $index"> -->
-          <tr>
+    Deatail of ID : {{apartmentId}}
+    <table class="table">
+        <!--   <tr ng-repeat="A in apartments | filter:searchBox track by $index"> -->
+        <tr>
             <td>{{apartmentdetial.apartmentId}}</td>
             <td>{{apartmentdetial.apartmentName}} </td>
             <td>{{apartmentdetial.apartmentAddress}}</td>
             <td>{{apartmentdetial.apartmentPhoneNo}}</td>
         </tr>
     </table>
-    <a class="btn btn-primary" href="#!/apartment_edit/{{apartmentdetial.apartmentId}}"> Edit</a>
-    <a class="btn btn-danger" href="#!/" ng-click="removeapartment()" > Delete</a>
+    <a class="btn btn-primary" href="#!/apartment_edit/{{apartmentdetial.apartmentId}}">
+        Edit</a>
+    <a class="btn btn-danger" href="#!/" ng-click="removeapartment()"> Delete</a>
 
 </div>

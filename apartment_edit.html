@@ -1,11 +1,10 @@
 <div class="container">
-        <h3>Edit Apartment page ID : {{apartmentId}}</h3>
-        <form ng-submit="editapartment()">
-            <input type="text" value="{{apartmentdetial.apartmentId}}" class="form-control" placeholder="ApartmentId" required="required">
-            <input type="text" value="{{apartmentdetial.apartmentName}}" class="form-control" placeholder="ApartmentName"  required="required">
-            <textarea type="text" class="form-control" placeholder="Address"rows="3"  required="required"> {{apartmentdetial.apartmentAddress}}</textarea>
-            <input type="text" value="{{apartmentdetial.apartmentPhoneNo}}" class="form-control" placeholder="Phone Number">
-            <a class="btn btn-primary" href="#!/apartments/{{apartmentId}}"ng-click="editapartment()" > Save Edit</a>
-
+        <h3>Edit Apartment page ID : {{existingApartment}}</h3>
+        <form>
+            <input type="text" ng-model="existingApartment.apartmentId" class="form-control" placeholder="ApartmentId" required="required">
+            <input type="text" ng-model="existingApartment.apartmentName" class="form-control" placeholder="ApartmentName"  required="required">
+            <textarea type="text" ng-model="existingApartment.apartmentAddress" class="form-control" placeholder="Address"rows="3"  required="required"></textarea>
+            <input type="text" ng-model="existingApartment.apartmentPhoneNo" class="form-control" placeholder="Phone Number">
+            <a class="btn btn-primary" href="#!/apartments/{{existingApartment.apartmentId}}" ng-click="saveEditapartment(existingApartment)"> Save Edit </a>
         </form>
     </div>

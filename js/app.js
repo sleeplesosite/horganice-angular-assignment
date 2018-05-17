@@ -10,7 +10,7 @@ angular.module('hgnApp', ['ngRoute'])
             });
         ApartmentStorage.newEntries = ApartmentStorage._getFromLocalStorage();
         var apartments = $scope.apartments = ApartmentStorage.newEntries;
-        $scope.addapartment = function ($localStorage) {
+        $scope.addapartment = function () {
             var newEntry = {
                 apartmentId: $scope.newApt.apartmentId,
                 apartmentName: $scope.newApt.apartmentName,
@@ -108,27 +108,37 @@ angular.module('hgnApp', ['ngRoute'])
         $scope.apartmentdetial = findapartment;
         $scope.removeapartment = function ($scope) {
             var isConfirm = confirm('Are you absolutely sure you want to delete?');
-            if(isConfirm){
-        allapartmentdetial.find(function (item, i) {
+            if (isConfirm) {
+                allapartmentdetial.find(function (item, i) {
+                    if (item.apartmentId === apartmentId) {
+                        index = i;
+                        //console.log('delete inex  ' + index); 
+                        return allapartmentdetial.splice(index, 1);
+                    }
+                })
+
+                ApartmentStorage._saveToLocalStorage(allapartmentdetial)
+            }
+        }
+        $scope.existingApartment = findapartment;
+        var edited = $scope.existingApartment;
+        $scope.saveEditapartment = function ($scope) {
+            ApartmentStorage.editEntry = ApartmentStorage._getFromLocalStorage();
+            ApartmentStorage.editEntry.push(edited);
+            ApartmentStorage.editEntry[ApartmentStorage.editEntry.indexOf(ApartmentStorage.editEntry)] = edited;
+            $scope.existingApartment = '';
+            console.log('This is saveedit func')
+            ApartmentStorage.editEntry.find(function (item, i) {
                 if (item.apartmentId === apartmentId) {
                     index = i;
                     //console.log('delete inex  ' + index); 
-                    return  allapartmentdetial.splice(index,1);
-                }    
+                    return ApartmentStorage.editEntry.splice(index, 1);
+                }
             })
-        
-            ApartmentStorage._saveToLocalStorage(allapartmentdetial)
+            ApartmentStorage._saveToLocalStorage(ApartmentStorage.editEntry)
         }
-    }
-        $scope.editapartment = function ($localStorage, $scope) {
-            console.log('This is edit func');
-            var isConfirm = confirm('Are you sure you want to save?');
-            if(isConfirm){
-
-            }
-        }
-    }
-    )
+        //$rootScope.$emit('editapartment', findapartment);
+    })
     .config(function ($routeProvider) {
         $routeProvider
             .when(
